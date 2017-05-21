@@ -2,6 +2,12 @@ echo "Setting Up DB"
 export PSQL="postgresql://localhost:26257/postgres"
 cat <<EOF  > dbsetup.sql
 CREATE DATABASE cg;
+EOF
+echo "Creating Database"
+./cockroach.sh sql --insecure < dbsetup.sql
+rm -f dbsetup.sql
+export PSQL="postgresql://localhost:26257/postgres/cg"
+cat <<EOF  > dbsetup.sql
 CREATE TABLE cg.project(
    id             SERIAL  PRIMARY KEY     NOT NULL,
    name           TEXT NOT NULL,
