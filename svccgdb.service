@@ -1,0 +1,12 @@
+[Unit]
+Description=svccgdb Crystal Garden DB Server
+After=svcrouter.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a svccgdb.ncc9.com
+ExecStop=/usr/bin/docker stop -t 2 svccgdb.ncc9.com
+
+[Install]
+WantedBy=multi-user.target
+
